@@ -34,6 +34,21 @@
               "master" "master"
               "job" "karlo-networking"
                 
+          }},
+          {{ module "module.pipelineTrigger.stage" 
+              "name" "pipeline trigger"
+              "refId" 4
+              "requisiteStageRefIds" ["3"]
+              
+
+
+
+              "application" "training"
+              "pipeline" "dinghy"
+              "pipelineParameters" {"vaca": true} 
+              
+
+                
           }}
         ],
         "triggers": [],
