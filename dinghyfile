@@ -26,7 +26,10 @@
             ],
             "type": "manualJudgment"
           },
-          {{ module "module.wait.stage" }}
+          {{ module "module.wait.stage" 
+              "name" "waitStage"
+              "waitTime" "30"
+          }}
         ],
         "triggers": [],
         "updateTs": "1567185128000"
