@@ -28,7 +28,7 @@
           },
           {{ module "module.wait.stage" 
               "name" "waitStage"
-              "waitTime" "30"
+              "waitTime" "3"
           }}
         ],
         "triggers": [],
