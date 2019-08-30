@@ -25,7 +25,8 @@
               "1"
             ],
             "type": "manualJudgment"
-          }
+          },
+          {{module module.wait.stage }}
         ],
         "triggers": [],
         "updateTs": "1567185128000"
