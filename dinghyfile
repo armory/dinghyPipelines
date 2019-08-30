@@ -37,8 +37,8 @@
 
 
 
-              "application" "training"
-              "pipeline" "dinghy"
+              "triggerApp" "training"
+              "triggerPipeline" "dinghy"
               "pipelineParameters" {"vaca": true} 
               
 
