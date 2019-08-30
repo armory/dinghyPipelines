@@ -28,6 +28,9 @@
           },
           {{ module "module.wait.stage" 
               "name" "waitStage"
+              "refId" "1"
+              "requisiteStageRefIds" "[]"
+
               "waitTime" "3"
           }}
         ],
