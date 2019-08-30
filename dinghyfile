@@ -31,6 +31,12 @@
               "refId" 2
               "requisiteStageRefIds" []
               "waitTime" "3"
+          }},
+          {{ module "module.manualJudgment.stage" 
+              "name" "manualJudgment2"
+              "refId" 3
+              "requisiteStageRefIds" 2
+              "instructions" "Please check"
           }}
         ],
         "triggers": [],
