@@ -17,7 +17,7 @@
           {{ module "module.manualJudgment.stage" 
               "name" "manualJudgment2"
               "refId" 2
-              "requisiteStageRefIds" 1
+              "requisiteStageRefIds" ["1"]
               "instructions" "Please check"
           }}
         ],
@@ -25,4 +25,4 @@
         "updateTs": "1567185128000"
       }
    ]
-} 
+}
