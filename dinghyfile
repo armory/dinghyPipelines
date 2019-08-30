@@ -4,7 +4,7 @@
       {
         "application": "training",
         "keepWaitingPipelines": false,
-        "name": "dinghy2",
+        "name": "dinghy3",
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
@@ -19,6 +19,21 @@
               "refId" 2
               "requisiteStageRefIds" ["1"]
               "instructions" "Please check"
+          }},
+          {{ module "module.manualJudgment.stage" 
+              "name" "manualJudgment2"
+              "refId" 2
+              "requisiteStageRefIds" ["1"]
+              "instructions" "Please check"
+          }},
+          {{ module "module.jenkins.stage" 
+              "name" "jenkinsss"
+              "refId" 3
+              "requisiteStageRefIds" ["2"]
+              
+              "master": "master",
+              "job" "karlo-networking"
+                
           }}
         ],
         "triggers": [],
