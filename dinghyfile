@@ -2,6 +2,7 @@
   "application": "training",
   "pipelines": [
       {
+        "application": "training",
         "keepWaitingPipelines": false,
         "name": "dinghy2",
         "lastModifiedBy": "karlomendozaarmory",
