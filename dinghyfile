@@ -3,7 +3,7 @@
   "pipelines": [
       {
         "keepWaitingPipelines": false,
-        "name": "dinghy2"
+        "name": "dinghy2",
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
