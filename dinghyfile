@@ -17,7 +17,7 @@
               "completeOtherBranchesThenFail" true
               "continuePipeline" true
               "failPipeline" false
-              "restrictExecutionDuringTimeWindow" false
+              "restrictExecutionDuringTimeWindow" true
               "restrictedExecutionWindow" {}
 
 
