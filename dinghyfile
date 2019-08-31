@@ -13,7 +13,16 @@
               "refId" 1
               "requisiteStageRefIds" []
               "waitTime" "3"
-              "ChangeMeForSomeThingElse" "pepino"
+
+              "completeOtherBranchesThenFail" true
+              "continuePipeline" true
+              "failPipeline" false
+              "restrictExecutionDuringTimeWindow" false
+              "restrictedExecutionWindow" {}
+              "stageEnabledExpression" false
+              "stageEnabledExpression" "pepino = true"
+
+
           }},
           {{ module "module.manualJudgment.stage" 
               "name" "manualJudgment2"
