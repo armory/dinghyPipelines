@@ -20,14 +20,41 @@
               "restrictExecutionDuringTimeWindow" true
               "restrictedExecutionWindow" {}
 
-
+              "notifications" [
+                                {
+                                  "address": null,
+                                  "level": "stage",
+                                  "publisherName": "blabla",
+                                  "type": "pubsub",
+                                  "when": [
+                                    "stage.starting",
+                                    "stage.complete",
+                                    "stage.failed"
+                                  ]
+                                }
+                              ]
           }},
           {{ module "module.manualJudgment.stage" 
               "name" "manualJudgment2"
               "refId" 2
               "requisiteStageRefIds" ["1"]
               "instructions" "Please check"
+
+              "notifications" [
+                  {
+                    "address": null,
+                    "level": "stage",
+                    "publisherName": "papapapapapappa",
+                    "type": "pubsub",
+                    "when": [
+                      "stage.starting",
+                      "stage.complete",
+                      "stage.failed"
+                    ]
+                  }
+                ]
           }},
+
           {{ module "module.jenkins.stage" 
               "name" "jenkinsss"
               "refId" 3
