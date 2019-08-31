@@ -13,6 +13,7 @@
               "refId" 1
               "requisiteStageRefIds" []
               "waitTime" "3"
+              "ChangeMeForSomeThingElse" "pepino"
           }},
           {{ module "module.manualJudgment.stage" 
               "name" "manualJudgment2"
@@ -25,7 +26,7 @@
               "refId" 3
               "requisiteStageRefIds" ["2"]
               
-              "master" "master"
+              "master" "MASTER"
               "job" "karlo-networking"
                 
           }},
@@ -34,15 +35,9 @@
               "refId" 4
               "requisiteStageRefIds" ["3"]
               
-
-
-
               "triggerApp" "training"
               "triggerPipeline" "dinghy"
-              "pipelineParameters" {"vaca": true} 
-              
-
-                
+              "pipelineParameters" {"vaca": true}   
           }}
         ],
         "triggers": [],
