@@ -19,8 +19,6 @@
               "failPipeline" false
               "restrictExecutionDuringTimeWindow" false
               "restrictedExecutionWindow" {}
-              "stageEnabledExpression" false
-              "stageEnabledExpression" "pepino=true"
 
 
           }},
