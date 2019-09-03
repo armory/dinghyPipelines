@@ -72,6 +72,23 @@
               "triggerApp" "training"
               "triggerPipeline" "dinghy"
               "pipelineParameters" {"vaca": true}   
+          }},
+          {{ module "module.bakeManifest.stage" 
+              "name" "bake manifest"
+              "refId" 5
+              "requisiteStageRefIds" ["4"]
+
+              "templateRenderer" "HELM2"
+              "outputName" "bake artifact output"
+              "namespace" "karlo",
+
+              "inputArtifacts": {{ var "inputArtifacts" ?: [] }},
+
+              "overrides": {{ var "overrides" ?: {} }},
+
+              "evaluateOverrideExpressions": false
+              
+
           }}
         ],
         "triggers": [],
