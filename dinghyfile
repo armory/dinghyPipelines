@@ -139,7 +139,7 @@
 
 
 
-            "manifests" [
+            "textManifests" [
                           {
                             "apiVersion": "apps/v1beta1",
                             "kind": "Deployment",
