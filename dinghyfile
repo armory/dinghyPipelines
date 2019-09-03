@@ -137,8 +137,6 @@
 
 
 
-
-
             "textManifests" [
                           {
                             "apiVersion": "apps/v1beta1",
