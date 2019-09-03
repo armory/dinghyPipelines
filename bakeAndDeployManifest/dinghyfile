@@ -18,7 +18,7 @@
 							        "type": "s3/object"
 							      },
 							      "displayName": "horrible-newt-82",
-							      "id": "helmBakedNginxId",
+							      "id": "myChartFromS3",
 							      "matchArtifact": {
 							        "id": "9da76220-87a0-4ed1-a625-e2e77669b3f4",
 							        "name": "s3://helm-charts-psdev/mychart-0.1.0.tgz",
@@ -33,7 +33,7 @@
 
           {{ module "module.bakeManifest.stage" 
               "name" "bake manifest"
-              "refId" 1
+              "refId" 1	
               "requisiteStageRefIds" []
 
               "templateRenderer" "HELM2"
