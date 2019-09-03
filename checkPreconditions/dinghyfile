@@ -1,0 +1,95 @@
+{
+  "application": "training",
+  "globals": {
+      "bakedArtifactId": "helmBakedNginX"
+
+  },
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "dinghy3",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+        "stages": [
+          {{ module "module.checkPreconditions.stage" 
+            "name" "checkPreconditions"
+            "refId" 1
+            "requisiteStageRefIds" []
+            "preconditions": [
+                              {
+                                "cloudProvider": "kubernetes",
+                                "context": {
+                                  "cluster": "deployment bla-mychart",
+                                  "comparison": ">=",
+                                  "credentials": "kubernetes",
+                                  "expected": 1,
+                                  "moniker": {
+                                    "app": "training",
+                                    "cluster": "deployment bla-mychart"
+                                  },
+                                  "regions": [
+                                    "karlo"
+                                  ]
+                                },
+                                "failPipeline": true,
+                                "type": "clusterSize"
+                              }
+                            ]
+
+          }},
+
+          {{ module "module.wait.stage" 
+              "name" "waitStage"
+              "refId" 2
+              "requisiteStageRefIds" ["1"]
+              "waitTime" "3"
+
+              "completeOtherBranchesThenFail" true
+              "continuePipeline" true
+              "failPipeline" false
+              "restrictExecutionDuringTimeWindow" true
+              "restrictedExecutionWindow" {}
+
+              "notifications" [
+                                {
+                                  "address": null,
+                                  "level": "stage",
+                                  "publisherName": "blabla",
+                                  "type": "pubsub",
+                                  "when": [
+                                    "stage.starting",
+                                    "stage.complete",
+                                    "stage.failed"
+                                  ]
+                                }
+                              ]
+          }},
+          {{ module "module.manualJudgment.stage" 
+              "name" "manualJudgment2"
+              "refId" 3
+              "requisiteStageRefIds" ["2"]
+              "instructions" "Please check"
+
+              "notifications" [
+                  {
+                    "address": null,
+                    "level": "stage",
+                    "publisherName": "papapapapapappa",
+                    "type": "pubsub",
+                    "when": [
+                      "stage.starting",
+                      "stage.complete",
+                      "stage.failed"
+                    ]
+                  }
+                ]
+          }}
+
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
