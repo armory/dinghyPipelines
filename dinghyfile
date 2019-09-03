@@ -1,5 +1,10 @@
 {
   "application": "training",
+  "globals": {
+      "bakedArtifactId": "helmBakedNginX"
+
+  },
+
   "pipelines": [
       {
         "application": "training",
@@ -106,7 +111,7 @@
                                         "type": "s3/object"
                                       },
                                       "displayName": "friendly-cow-21",
-                                      "id": "54cf193e-cea4-49de-8719-c35d0479f69b",
+                                      "id": {{ var "bakedArtifactId"}}
                                       "matchArtifact": {
                                         "id": "83a239d4-9c62-4a78-8cba-29db7e36da50",
                                         "name": "asdas",
@@ -126,17 +131,9 @@
 
             "account" "kubernetes"
             "cloudProvider" "kubernetes"
-
-            
             "applicationName" "training"
-            
-
             "namespaceOverride" "karlo"
-
             "source" "text"
-
-
-
             "textManifests" [
                           {
                             "apiVersion": "apps/v1beta1",
@@ -172,12 +169,76 @@
                         ]
             "requiredArtifacts" []
             "skipExpressionEvaluation" false
-
-
             "requiredArtifactIds" []
+            "expectedArtifacts" []
+
+          }},
+
+          {{ module "module.deployManifest.stage" 
+            "name" "deploy manifest"
+            "refId" 6
+            "requisiteStageRefIds" ["5"] 
+
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+            "applicationName" "training"
+            "namespaceOverride" "karlo"
+            "source" "text"
+            "textManifests" [
+                          {
+                            "apiVersion": "apps/v1beta1",
+                            "kind": "Deployment",
+                            "metadata": {
+                              "name": "nginx",
+                              "namespace": "karlo"
+                            },
+                            "spec": {
+                              "replicas": 1,
+                              "template": {
+                                "metadata": {
+                                  "labels": {
+                                    "app": "nginx"
+                                  }
+                                },
+                                "spec": {
+                                  "containers": [
+                                    {
+                                      "image": "nginx:stable",
+                                      "name": "nginx",
+                                      "ports": [
+                                        {
+                                          "containerPort": 80
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+            "requiredArtifacts" []
+            "skipExpressionEvaluation" false
+            "requiredArtifactIds" []
+            "expectedArtifacts" []
+
+          }},
 
 
+          {{ module "module.deployManifest.stage" 
+            "name" "deploy manifest"
+            "refId" 7
+            "requisiteStageRefIds" ["6"] 
 
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+            "applicationName" "training"
+            "namespaceOverride" "karlo"
+            "source" "artifact"
+
+            "requiredArtifacts" []
+            "skipExpressionEvaluation" false
+            "requiredArtifactIds" []
             "expectedArtifacts" []
 
           }}
