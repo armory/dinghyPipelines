@@ -9,7 +9,7 @@
       {
         "application": "training",
         "keepWaitingPipelines": false,
-        "name": "dinghy3",
+        "name": "checkPreconditions",
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
@@ -17,7 +17,7 @@
             "name" "checkPreconditions"
             "refId" 1
             "requisiteStageRefIds" []
-            "preconditions": [
+            "preconditions" [
                               {
                                 "cloudProvider": "kubernetes",
                                 "context": {
