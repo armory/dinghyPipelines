@@ -37,7 +37,7 @@
               "requisiteStageRefIds" []
 
               "templateRenderer" "HELM2"
-              "outputName" "bakeArtifactOutput"
+              "outputName" "bake-artifact-output"
               "namespace" "karlo"
 
               "inputArtifacts" [
@@ -61,7 +61,7 @@
 								      "id": "helmBakedNginxId",
 								      "matchArtifact": {
 								        "id": "83a239d4-9c62-4a78-8cba-29db7e36da13",
-								        "name": "asdas",
+								        "name": "bake-artifact-output",
 								        "type": "embedded/base64"
 								      },
 								      "useDefaultArtifact": false,
