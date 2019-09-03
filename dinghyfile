@@ -118,7 +118,73 @@
                                   ]
               
 
+          }},
+          {{ module "module.deployManifest.stage" 
+            "name" "deploy manifest"
+            "refId" 6
+            "requisiteStageRefIds" ["5"] 
+
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+
+            
+            "applicationName" "training"
+            
+
+            "namespaceOverride" "karlo"
+
+            "source" "text"
+
+
+
+
+
+            "manifests" [
+                          {
+                            "apiVersion": "apps/v1beta1",
+                            "kind": "Deployment",
+                            "metadata": {
+                              "name": "nginx",
+                              "namespace": "karlo"
+                            },
+                            "spec": {
+                              "replicas": 1,
+                              "template": {
+                                "metadata": {
+                                  "labels": {
+                                    "app": "nginx"
+                                  }
+                                },
+                                "spec": {
+                                  "containers": [
+                                    {
+                                      "image": "nginx:stable",
+                                      "name": "nginx",
+                                      "ports": [
+                                        {
+                                          "containerPort": 80
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+            "requiredArtifacts" []
+            "skipExpressionEvaluation" false,
+
+
+            "requiredArtifactIds" "{{ var "requiredArtifactIds" ? [] }}",
+
+            "trafficManagement" "{{ var "trafficManagement" ? {} }}",
+
+
+            "expectedArtifacts" "{{ var "expectedArtifacts" ? {} }}",  
+
           }}
+
         ],
         "triggers": [],
         "updateTs": "1567185128000"
