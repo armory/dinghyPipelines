@@ -42,7 +42,7 @@
 
               "inputArtifacts" [
                                   {
-                                    "account": null,
+                                    "account": "s3artifact",
                                     "artifact": null,
                                     "id": "myChartFromS3"
                                   }
