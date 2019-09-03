@@ -111,7 +111,7 @@
                                         "type": "s3/object"
                                       },
                                       "displayName": "friendly-cow-21",
-                                      "id": "{{var "bakedArtifactId"}}",
+                                      "id": "helmBakedNginxId",
                                       "matchArtifact": {
                                         "id": "83a239d4-9c62-4a78-8cba-29db7e36da50",
                                         "name": "asdas",
@@ -225,6 +225,7 @@
           }},
 
 
+
           {{ module "module.deployManifest.stage" 
             "name" "deploy manifest"
             "refId" 7
@@ -235,6 +236,7 @@
             "applicationName" "training"
             "namespaceOverride" "karlo"
             "source" "artifact"
+            "manifestArtifactId" "helmBakedNginxId"
 
             "requiredArtifacts" []
             "skipExpressionEvaluation" false
