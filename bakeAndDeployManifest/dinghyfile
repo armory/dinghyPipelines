@@ -1,0 +1,88 @@
+{
+  "application": "training",
+  "globals": {
+      "bakedArtifactId": "helmBakedNginX"
+
+  },
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "bakeAndDeploy",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+        "stages": [
+
+          {{ module "module.bakeManifest.stage" 
+              "name" "bake manifest"
+              "refId" 1
+              "requisiteStageRefIds" []
+
+              "templateRenderer" "HELM2"
+              "outputName" "bake artifact output"
+              "namespace" "karlo"
+
+              "inputArtifacts" [
+                                  {
+                                    "account": null,
+                                    "artifact": null,
+                                    "id": "0ab15775-e4ac-4a78-8840-ce718c6ee897"
+                                  }
+                                ]
+
+              "overrides" {
+                              "dasas": "adsa",
+                              "dasdas": "sdasd"
+                            }
+
+              "evaluateOverrideExpressions" false
+
+              "expectedArtifacts" [
+                                    {
+                                      "defaultArtifact": {
+                                        "id": "68ebb895-859d-41b3-88b5-f94f883e3b9c",
+                                        "name": "asdasdas",
+                                        "reference": "asdasdas",
+                                        "type": "s3/object"
+                                      },
+                                      "displayName": "friendly-cow-21",
+                                      "id": "helmBakedNginxId",
+                                      "matchArtifact": {
+                                        "id": "83a239d4-9c62-4a78-8cba-29db7e36da50",
+                                        "name": "asdas",
+                                        "type": "s3/object"
+                                      },
+                                      "useDefaultArtifact": true,
+                                      "usePriorArtifact": false
+                                    }
+                                  ]
+              
+
+          }},
+          {{ module "module.deployManifest.stage" 
+            "name" "deploy manifest"
+            "refId" 2
+            "requisiteStageRefIds" ["1"] 
+
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+            "applicationName" "training"
+            "namespaceOverride" "karlo"
+            "source" "artifact"
+            "manifestArtifactId" "helmBakedNginxId"
+
+            "requiredArtifacts" []
+            "skipExpressionEvaluation" false
+            "requiredArtifactIds" []
+            "expectedArtifacts" []
+
+          }}
+
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
+
