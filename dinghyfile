@@ -82,11 +82,40 @@
               "outputName" "bake artifact output"
               "namespace" "karlo"
 
-              "inputArtifacts" []
+              "inputArtifacts" [
+                                  {
+                                    "account": null,
+                                    "artifact": null,
+                                    "id": "0ab15775-e4ac-4a78-8840-ce718c6ee897"
+                                  }
+                                ]
 
-              "overrides" {}
+              "overrides" {
+                              "dasas": "adsa",
+                              "dasdas": "sdasd"
+                            }
 
               "evaluateOverrideExpressions" false
+
+              "expectedArtifacts" [
+                                    {
+                                      "defaultArtifact": {
+                                        "id": "68ebb895-859d-41b3-88b5-f94f883e3b9c",
+                                        "name": "asdasdas",
+                                        "reference": "asdasdas",
+                                        "type": "s3/object"
+                                      },
+                                      "displayName": "friendly-cow-21",
+                                      "id": "54cf193e-cea4-49de-8719-c35d0479f69b",
+                                      "matchArtifact": {
+                                        "id": "83a239d4-9c62-4a78-8cba-29db7e36da50",
+                                        "name": "asdas",
+                                        "type": "s3/object"
+                                      },
+                                      "useDefaultArtifact": true,
+                                      "usePriorArtifact": false
+                                    }
+                                  ]
               
 
           }}
