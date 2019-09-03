@@ -179,7 +179,7 @@
             "trafficManagement" {}
 
 
-            "expectedArtifacts" {}
+            "expectedArtifacts" []
 
           }}
 
