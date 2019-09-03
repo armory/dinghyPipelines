@@ -82,7 +82,7 @@
             "namespaceOverride" "karlo"
             "source" "artifact"
             "manifestArtifactId" "helmBakedNginxId"
-            "manifestArtifactAccount" "embedded/base64"
+            "manifestArtifactAccount" "embedded-artifact"
             
 
             "requiredArtifacts" []
