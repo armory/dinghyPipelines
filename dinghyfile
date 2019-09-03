@@ -176,7 +176,6 @@
 
             "requiredArtifactIds" []
 
-            "trafficManagement" {}
 
 
             "expectedArtifacts" []
