@@ -37,7 +37,7 @@
               "requisiteStageRefIds" []
 
               "templateRenderer" "HELM2"
-              "outputName" "bake artifact output"
+              "outputName" "bakeArtifactOutput"
               "namespace" "karlo"
 
               "inputArtifacts" [
@@ -56,23 +56,17 @@
               "evaluateOverrideExpressions" false
 
               "expectedArtifacts" [
-                                    {
-                                      "defaultArtifact": {
-                                        "id": "68ebb895-859d-41b3-88b5-f94f883e313",
-                                        "name": "asdasdas",
-                                        "reference": "asdasdas",
-                                        "type": "s3/object"
-                                      },
-                                      "displayName": "friendly-cow-21",
-                                      "id": "helmBakedNginxId",
-                                      "matchArtifact": {
-                                        "id": "83a239d4-9c62-4a78-8cba-29db7e36da13",
-                                        "name": "asdas",
-                                        "type": "s3/object"
-                                      },
-                                      "useDefaultArtifact": true,
-                                      "usePriorArtifact": false
-                                    }
+								    {
+								      "displayName": "friendly-cow-21",
+								      "id": "helmBakedNginxId",
+								      "matchArtifact": {
+								        "id": "83a239d4-9c62-4a78-8cba-29db7e36da13",
+								        "name": "asdas",
+								        "type": "embedded/base64"
+								      },
+								      "useDefaultArtifact": false,
+								      "usePriorArtifact": false
+								    }
                                   ]
               
 
