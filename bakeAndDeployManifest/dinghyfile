@@ -1,24 +1,6 @@
 {
   "application": "training",
 
-  "expectedArtifacts": [
-    {
-      "defaultArtifact": {
-        "customKind": true,
-        "id": "00cf98be-4d49-42cc-8de7-ee1e6d2d6012"
-      },
-      "displayName": "lovely-warthog-75",
-      "id": "myChartFromS3",
-      "matchArtifact": {
-        "id": "b7759dbc-f629-4f9b-b381-4737292ff412",
-        "name": "s3://helm-charts-psdev/mychart-0.1.0.tgz",
-        "type": "s3/object"
-      },
-      "useDefaultArtifact": false,
-      "usePriorArtifact": false
-    }
-  ],
-
   "pipelines": [
       {
         "application": "training",
@@ -26,6 +8,27 @@
         "name": "bakeAndDeploy",
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
+
+        "expectedArtifacts": [
+							    {
+							      "defaultArtifact": {
+							        "id": "f66b4474-589b-421c-afbb-7b2303fd6a18",
+							        "name": "s3://helm-charts-psdev/mychart-0.1.0.tgz",
+							        "reference": "s3://helm-charts-psdev/mychart-0.1.0.tgz",
+							        "type": "s3/object"
+							      },
+							      "displayName": "horrible-newt-82",
+							      "id": "dd9ad38b-f517-4092-b706-da116ec7d877",
+							      "matchArtifact": {
+							        "id": "9da76220-87a0-4ed1-a625-e2e77669b3f4",
+							        "name": "s3://helm-charts-psdev/mychart-0.1.0.tgz",
+							        "type": "s3/object"
+							      },
+							      "useDefaultArtifact": true,
+							      "usePriorArtifact": false
+							    }
+							  ],
+
         "stages": [
 
           {{ module "module.bakeManifest.stage" 
