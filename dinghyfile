@@ -111,7 +111,7 @@
                                         "type": "s3/object"
                                       },
                                       "displayName": "friendly-cow-21",
-                                      "id": {{var "bakedArtifactId"}},
+                                      "id": "{{var "bakedArtifactId"}}",
                                       "matchArtifact": {
                                         "id": "83a239d4-9c62-4a78-8cba-29db7e36da50",
                                         "name": "asdas",
