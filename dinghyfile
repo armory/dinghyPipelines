@@ -173,15 +173,15 @@
                           }
                         ]
             "requiredArtifacts" []
-            "skipExpressionEvaluation" false,
+            "skipExpressionEvaluation" false
 
 
-            "requiredArtifactIds" "{{ var "requiredArtifactIds" ? [] }}",
+            "requiredArtifactIds" []
 
-            "trafficManagement" "{{ var "trafficManagement" ? {} }}",
+            "trafficManagement" {}
 
 
-            "expectedArtifacts" "{{ var "expectedArtifacts" ? {} }}",  
+            "expectedArtifacts" {}
 
           }}
 
