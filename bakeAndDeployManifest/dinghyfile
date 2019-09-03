@@ -5,12 +5,12 @@
     {
       "defaultArtifact": {
         "customKind": true,
-        "id": "00cf98be-4d49-42cc-8de7-ee1e6d2d6082"
+        "id": "00cf98be-4d49-42cc-8de7-ee1e6d2d6012"
       },
       "displayName": "lovely-warthog-75",
       "id": "myChartFromS3",
       "matchArtifact": {
-        "id": "b7759dbc-f629-4f9b-b381-4737292ff41a",
+        "id": "b7759dbc-f629-4f9b-b381-4737292ff412",
         "name": "s3://helm-charts-psdev/mychart-0.1.0.tgz",
         "type": "s3/object"
       },
@@ -55,7 +55,7 @@
               "expectedArtifacts" [
                                     {
                                       "defaultArtifact": {
-                                        "id": "68ebb895-859d-41b3-88b5-f94f883e3b9c",
+                                        "id": "68ebb895-859d-41b3-88b5-f94f883e313",
                                         "name": "asdasdas",
                                         "reference": "asdasdas",
                                         "type": "s3/object"
@@ -63,7 +63,7 @@
                                       "displayName": "friendly-cow-21",
                                       "id": "helmBakedNginxId",
                                       "matchArtifact": {
-                                        "id": "83a239d4-9c62-4a78-8cba-29db7e36da50",
+                                        "id": "83a239d4-9c62-4a78-8cba-29db7e36da13",
                                         "name": "asdas",
                                         "type": "s3/object"
                                       },
