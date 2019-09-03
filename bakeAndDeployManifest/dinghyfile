@@ -1,9 +1,23 @@
 {
   "application": "training",
-  "globals": {
-      "bakedArtifactId": "helmBakedNginX"
 
-  },
+  "expectedArtifacts": [
+    {
+      "defaultArtifact": {
+        "customKind": true,
+        "id": "00cf98be-4d49-42cc-8de7-ee1e6d2d6082"
+      },
+      "displayName": "lovely-warthog-75",
+      "id": "myChartFromS3",
+      "matchArtifact": {
+        "id": "b7759dbc-f629-4f9b-b381-4737292ff41a",
+        "name": "s3://helm-charts-psdev/mychart-0.1.0.tgz",
+        "type": "s3/object"
+      },
+      "useDefaultArtifact": false,
+      "usePriorArtifact": false
+    }
+  ],
 
   "pipelines": [
       {
@@ -27,7 +41,7 @@
                                   {
                                     "account": null,
                                     "artifact": null,
-                                    "id": "0ab15775-e4ac-4a78-8840-ce718c6ee897"
+                                    "id": "myChartFromS3"
                                   }
                                 ]
 
