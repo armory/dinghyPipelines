@@ -69,7 +69,7 @@
             "location" "karlo"
             "manifestType" "deployment"
             "manifestName" "nginx"
-            "mode" "static"
+            "mode" "label"
             
             "options" {
                         "cascading": true,
