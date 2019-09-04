@@ -67,7 +67,8 @@
             "app" "training"
             "cloudProvider" "kubernetes"
             "location" "karlo"
-            "manifestName" "deployment nginx"
+            "manifestType" "deployment"
+            "manifestName" "nginx"
             "mode" "static"
             
             "options" {
