@@ -67,18 +67,62 @@
             "app" "training"
             "cloudProvider" "kubernetes"
             "location" "karlo"
+
+            "mode" "static"
             "manifestType" "deployment"
             "manifestName" "nginx"
-            "mode" "label"
-            
+
             "options" {
                         "cascading": true,
                         "gracePeriodSeconds": 50
                       }
+          }},
 
+          {{ module "module.deleteManifest.stage"
+            "name" "Delete Manifest"
+            "refId" "3"
+            "requisiteStageRefIds" ["1"]
 
+            "account" "kubernetes"
+            "app" "training"
+            "cloudProvider" "kubernetes"
+            "location" "karlo"
 
+            "mode" "dynamic"
+            "cluster" "deployment bla-mychart"
+            "criteria" "smallest"
+            "kind" "deployment"
+          }},
+
+          {{ module "module.deleteManifest.stage"
+            "name" "Delete Manifest"
+            "refId" "4"
+            "requisiteStageRefIds" ["1"]
+
+            "account" "kubernetes"
+            "app" "training"
+            "cloudProvider" "kubernetes"
+            "location" "karlo"
+
+            "mode" "labels"
+            "kinds" [
+              "deployment"
+            ]
+            "labelSelectors" {
+                              "selectors": [
+                                {
+                                  "key": "arabia",
+                                  "kind": "NOT_CONTAINS",
+                                  "values": [
+                                    "bla"
+                                  ]
+                                }
+                              ]
+                            }
           }}
+
+
+
 
 
 
