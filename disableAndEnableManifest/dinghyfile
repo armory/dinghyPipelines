@@ -1,0 +1,79 @@
+{
+  "application": "training",
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "disableAndEnableManifest",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+        "stages": [
+          {{ module "module.deployManifest.stage" 
+            "name" "deploy manifest"
+            "refId" 1
+            "requisiteStageRefIds" [] 
+
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+            "applicationName" "training"
+            "namespaceOverride" "karlo"
+            "source" "text"
+            "textManifests" [
+                              {
+                                "apiVersion": "batch/v1",
+                                "kind": "Job",
+                                "metadata": {
+                                  "name": "pi",
+                                  "namespace": "karlo"
+                                },
+                                "spec": {
+                                  "backoffLimit": 4,
+                                  "template": {
+                                    "spec": {
+                                      "containers": [
+                                        {
+                                          "command": [
+                                            "perl",
+                                            "-Mbignum=bpi",
+                                            "-wle",
+                                            "print bpi(20000)"
+                                          ],
+                                          "image": "perl",
+                                          "name": "pi"
+                                        }
+                                      ],
+                                      "restartPolicy": "Never"
+                                    }
+                                  }
+                                }
+                              }
+                        ]
+            "requiredArtifacts" []
+            "skipExpressionEvaluation" false
+            "requiredArtifactIds" []
+            "expectedArtifacts" []
+
+          }},
+          {{ module "module.disableManifest.stage"
+            "name" "Delete Manifest"
+            "refId" "2"
+            "requisiteStageRefIds" ["1"]
+
+            "account" "kubernetes"
+            "app" "training"
+            "cloudProvider" "kubernetes"
+            "location" "karlo"
+
+            "mode" "static"
+            "manifestType" "job"
+            "manifestName" "pi"
+
+          }}
+
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
