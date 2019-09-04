@@ -104,7 +104,7 @@
             "cloudProvider" "kubernetes"
             "location" "karlo"
 
-            "mode" "labels"
+            "mode" "label"
             "kinds" [
               "deployment"
             ]
