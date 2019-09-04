@@ -1,0 +1,90 @@
+{
+  "application": "training",
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "deployAndDeleteManifest",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+        "stages": [
+          {{ module "module.deployManifest.stage" 
+            "name" "deploy manifest"
+            "refId" 1
+            "requisiteStageRefIds" [] 
+
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+            "applicationName" "training"
+            "namespaceOverride" "karlo"
+            "source" "text"
+            "textManifests" [
+                          {
+                            "apiVersion": "apps/v1beta1",
+                            "kind": "Deployment",
+                            "metadata": {
+                              "name": "nginx",
+                              "namespace": "karlo"
+                            },
+                            "spec": {
+                              "replicas": 1,
+                              "template": {
+                                "metadata": {
+                                  "labels": {
+                                    "app": "nginx"
+                                  }
+                                },
+                                "spec": {
+                                  "containers": [
+                                    {
+                                      "image": "nginx:stable",
+                                      "name": "nginx",
+                                      "ports": [
+                                        {
+                                          "containerPort": 80
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+            "requiredArtifacts" []
+            "skipExpressionEvaluation" false
+            "requiredArtifactIds" []
+            "expectedArtifacts" []
+
+          }},
+          {{ module "module.deleteManifest.stage"
+            "name" "Delete Manifest"
+            "refId" "2"
+            "requisiteStageRefIds" ["1"]
+
+            "account" "kubernetes"
+            "app" "training"
+            "cloudProvider" "kubernetes"
+            "location" "karlo"
+            "manifestName" "nginx"
+            "mode" "static"
+            
+            "options" {
+                        "cascading": true,
+                        "gracePeriodSeconds": 50
+                      }
+
+
+
+          }}
+
+
+
+
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
