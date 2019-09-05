@@ -1,0 +1,87 @@
+{
+  "application": "training",
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "webhook",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+        "stages": [
+          {{ module "module.webhook.stage" 
+            "name" "webhook"
+            "refId" 1
+            "requisiteStageRefIds" [] 
+
+            "url" "https://webhook.site/649ab482-a8e5-4b73-a5f8-62f8e44b881b"
+            "method" "POST"
+            "failFastStatusCodes" [
+              404,
+              500
+            ]
+            "payload" {
+              "dinghy": "rocks"
+            }
+            "customHeaders" {
+              "dinghy": "rocks harder"
+            }
+
+
+            "waitForCompletion" true
+
+            "statusUrlResolution" "getMethod"
+            "waitBeforeMonitor" "30"
+            "retryStatusCodes" [
+              404
+            ]
+            "statusJsonPath" "$.buildInfo.status"
+            "progressJsonPath" "$.buildInfo.progress"
+            "successStatuses" "Warning, Great, Amaizing"
+            "canceledStatuses" "Unauthorized, Terrible"
+            "terminalStatuses" "Error, Exception"
+          }},
+
+          {{ module "module.webhook.stage" 
+            "name" "webhook"
+            "refId" 1
+            "requisiteStageRefIds" [] 
+
+            "url" "https://webhook.site/649ab482-a8e5-4b73-a5f8-62f8e44b881b"
+            "method" "POST"
+            "failFastStatusCodes" [
+              404,
+              500
+            ]
+            "payload" {
+              "dinghy": "rocks"
+            }
+            "customHeaders" {
+              "dinghy": "rocks harder"
+            }
+
+
+            "waitForCompletion" true
+
+            "statusUrlResolution" "webhookResponse"
+            "statusUrlJsonPath" "https://webhookresponse.com"
+            "waitBeforeMonitor" "30"
+            "retryStatusCodes" [
+              404
+            ]
+            "statusJsonPath" "$.buildInfo.status"
+            "progressJsonPath" "$.buildInfo.progress"
+            "successStatuses" "Warning, Great, Amaizing"
+            "canceledStatuses" "Unauthorized, Terrible"
+            "terminalStatuses" "Error, Exception"
+          }}
+
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
+
+
+
