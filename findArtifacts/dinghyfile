@@ -96,7 +96,7 @@
 
           }},
 
-          {{ module "module.findArtifactFromResource.stage"
+          {{ module "module.findArtifactFromExecution.stage"
             "name" "Find Artifacts From Resource"
             "refId" "3"
             "requisiteStageRefIds" ["1"]
