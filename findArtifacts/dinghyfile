@@ -1,0 +1,33 @@
+{
+  "application": "training",
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "findArtifacts",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+        "stages": [
+          {{ module "module.findArtifactFromResource.stage"
+            "name" "Find Artifacts From Resource"
+            "refId" "1"
+            "requisiteStageRefIds" []
+
+            "app" "training"
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+            "location" "karlo"
+
+            "mode" "static"
+            "manifestType" "configMap"
+            "manifestName" "terraformer-credentials"
+
+          }}
+
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
