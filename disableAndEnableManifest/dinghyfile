@@ -21,27 +21,38 @@
             "source" "text"
             "textManifests" [
                               {
-                                apiVersion: batch/v1beta1
-                                kind: CronJob
-                                metadata:
-                                  name: hello
-                                  namespace: karlo
-                                spec:
-                                  jobTemplate:
-                                    spec:
-                                      template:
-                                        spec:
-                                          containers:
-                                            - args:
-                                                - /bin/sh
-                                                - '-c'
-                                                - date; echo Hello from the Kubernetes cluster
-                                              image: busybox
-                                              name: hello
-                                          restartPolicy: OnFailure
-                                  schedule: '*/5 * * * *'
+                                "apiVersion": "batch/v1beta1",
+                                "kind": "CronJob",
+                                "metadata": {
+                                  "name": "hello",
+                                  "namespace": "karlo"
+                                },
+                                "spec": {
+                                  "jobTemplate": {
+                                    "spec": {
+                                      "template": {
+                                        "spec": {
+                                          "containers": [
+                                            {
+                                              "args": [
+                                                "/bin/sh",
+                                                "-c",
+                                                "date; echo Hello from the Kubernetes cluster"
+                                              ],
+                                              "image": "busybox",
+                                              "name": "hello"
+                                            }
+                                          ],
+                                          "restartPolicy": "OnFailure"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "schedule": "*/5 * * * *"
+                                }
                               }
-                        ]
+                            ]
+                            
             "requiredArtifacts" []
             "skipExpressionEvaluation" false
             "requiredArtifactIds" []
