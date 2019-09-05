@@ -102,6 +102,7 @@
             "requisiteStageRefIds" ["1"]
 
             "application" "training"
+            "pipeline" "1f256b05-89e2-4d05-b850-236a78ea7138"
             
             "executionOptions" {
                                   "successful": true
