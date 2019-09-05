@@ -102,6 +102,8 @@
             "requisiteStageRefIds" ["1"]
 
             "application" "training"
+            "triggerApp" "training"
+            "triggerPipeline" "findArtifacts"
             "pipeline" "1f256b05-89e2-4d05-b850-236a78ea7138"
             
             "executionOptions" {
