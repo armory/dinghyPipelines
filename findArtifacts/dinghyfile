@@ -9,10 +9,63 @@
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
+
+
+          {{ module "module.deployManifest.stage" 
+            "name" "deploy manifest"
+            "refId" 1
+            "requisiteStageRefIds" [] 
+
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+            "applicationName" "training"
+            "namespaceOverride" "karlo"
+            "source" "text"
+            "textManifests" [
+                          {
+                            "apiVersion": "apps/v1beta1",
+                            "kind": "Deployment",
+                            "metadata": {
+                              "name": "nginx",
+                              "namespace": "karlo"
+                            },
+                            "spec": {
+                              "replicas": 1,
+                              "template": {
+                                "metadata": {
+                                  "labels": {
+                                    "app": "nginx"
+                                  }
+                                },
+                                "spec": {
+                                  "containers": [
+                                    {
+                                      "image": "nginx:stable",
+                                      "name": "nginx",
+                                      "ports": [
+                                        {
+                                          "containerPort": 80
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+            "requiredArtifacts" []
+            "skipExpressionEvaluation" false
+            "requiredArtifactIds" []
+            "expectedArtifacts" []
+
+          }},
+
+        
           {{ module "module.findArtifactFromResource.stage"
             "name" "Find Artifacts From Resource"
-            "refId" "1"
-            "requisiteStageRefIds" []
+            "refId" "2"
+            "requisiteStageRefIds" ["1"]
 
             "app" "training"
             "account" "kubernetes"
@@ -20,8 +73,26 @@
             "location" "karlo"
 
             "mode" "static"
-            "manifestType" "configMap"
-            "manifestName" "terraformer-credentials"
+            "manifestType" "deployment"
+            "manifestName" "nginx"
+
+            "expectedArtifacts" [
+                                    {
+                                      "defaultArtifact": {
+                                        "customKind": true,
+                                        "id": "7e2e6e8c-33b4-419c-ab35-07094b345708"
+                                      },
+                                      "displayName": "docker-image",
+                                      "id": "9d46ae03-7643-4adc-a5b3-f4acb4833ba7",
+                                      "matchArtifact": {
+                                        "id": "05236a51-b444-44ca-95ec-0cac2738c3c9",
+                                        "name": "nginx",
+                                        "type": "docker/image"
+                                      },
+                                      "useDefaultArtifact": false,
+                                      "usePriorArtifact": false
+                                    }
+                                  ]
 
           }}
 
