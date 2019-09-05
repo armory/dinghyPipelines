@@ -1,0 +1,41 @@
+{
+  "application": "training",
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "evaluateAndUseVariables",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+        "stages": [
+          
+          {{ module "module.evaluateVariables.stage"
+              "name" "Evaluate Variable"
+              "refId" 1
+              "requisiteStageRefIds" []
+
+              "variables" [
+                            {
+                              "key": "armory",
+                              "value": "rocks"
+                            }
+                          ]
+              "failOnFailedExpressions" true
+          }},
+
+          {{ module "module.manualJudgment.stage" 
+              "name" "Manual Judgment"
+              "refId" 2
+              "requisiteStageRefIds" ["1"]
+              "instructions" "${ armory }"
+
+          }}
+
+    
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
