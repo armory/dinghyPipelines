@@ -52,7 +52,7 @@
                                 }
                               }
                             ]
-                            
+
             "requiredArtifacts" []
             "skipExpressionEvaluation" false
             "requiredArtifactIds" []
@@ -88,6 +88,26 @@
             "manifestType" "cronJob"
             "manifestName" "hello"
 
+          }},
+
+          {{ module "module.deleteManifest.stage"
+            "name" "Delete Manifest"
+            "refId" "4"
+            "requisiteStageRefIds" ["3"]
+
+            "account" "kubernetes"
+            "app" "training"
+            "cloudProvider" "kubernetes"
+            "location" "karlo"
+
+            "mode" "static"
+            "manifestType" "cronjob"
+            "manifestName" "hello"
+
+            "options" {
+                        "cascading": true,
+                        "gracePeriodSeconds": 50
+                      }
           }}
 
         ],
