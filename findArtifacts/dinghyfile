@@ -94,6 +94,36 @@
                                     }
                                   ]
 
+          }},
+
+          {{ module "module.findArtifactFromResource.stage"
+            "name" "Find Artifacts From Resource"
+            "refId" "3"
+            "requisiteStageRefIds" ["1"]
+
+            "application" "training"
+            
+            "executionOptions" {
+                                  "successful": true
+                                }
+            "expectedArtifacts" [
+                                    {
+                                      "defaultArtifact": {
+                                        "customKind": true,
+                                        "id": "a96a5642-cf39-4b4b-b86e-86ed11e39533"
+                                      },
+                                      "displayName": "rude-owl-31",
+                                      "id": "7c04ed68-48ec-474e-ad10-f6b515dd1712",
+                                      "matchArtifact": {
+                                        "id": "6c6c5e7c-3d39-433a-8b5b-16c10eb4b1e8",
+                                        "name": "nginx",
+                                        "type": "docker/image"
+                                      },
+                                      "useDefaultArtifact": false,
+                                      "usePriorArtifact": false
+                                    }
+                                  ]
+
           }}
 
         ],
