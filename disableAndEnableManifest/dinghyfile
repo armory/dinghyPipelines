@@ -21,32 +21,25 @@
             "source" "text"
             "textManifests" [
                               {
-                                "apiVersion": "batch/v1",
-                                "kind": "Job",
-                                "metadata": {
-                                  "name": "pi",
-                                  "namespace": "karlo"
-                                },
-                                "spec": {
-                                  "backoffLimit": 4,
-                                  "template": {
-                                    "spec": {
-                                      "containers": [
-                                        {
-                                          "command": [
-                                            "perl",
-                                            "-Mbignum=bpi",
-                                            "-wle",
-                                            "print bpi(20000)"
-                                          ],
-                                          "image": "perl",
-                                          "name": "pi"
-                                        }
-                                      ],
-                                      "restartPolicy": "Never"
-                                    }
-                                  }
-                                }
+                                apiVersion: batch/v1beta1
+                                kind: CronJob
+                                metadata:
+                                  name: hello
+                                  namespace: karlo
+                                spec:
+                                  jobTemplate:
+                                    spec:
+                                      template:
+                                        spec:
+                                          containers:
+                                            - args:
+                                                - /bin/sh
+                                                - '-c'
+                                                - date; echo Hello from the Kubernetes cluster
+                                              image: busybox
+                                              name: hello
+                                          restartPolicy: OnFailure
+                                  schedule: '*/5 * * * *'
                               }
                         ]
             "requiredArtifacts" []
@@ -56,7 +49,7 @@
 
           }},
           {{ module "module.disableManifest.stage"
-            "name" "Delete Manifest"
+            "name" "Disable Manifest"
             "refId" "2"
             "requisiteStageRefIds" ["1"]
 
@@ -66,8 +59,23 @@
             "location" "karlo"
 
             "mode" "static"
-            "manifestType" "job"
-            "manifestName" "pi"
+            "manifestType" "cronJob"
+            "manifestName" "hello"
+
+          }},
+          {{ module "module.enableManifest.stage"
+            "name" "Enable Manifest"
+            "refId" "3"
+            "requisiteStageRefIds" ["2"]
+
+            "account" "kubernetes"
+            "app" "training"
+            "cloudProvider" "kubernetes"
+            "location" "karlo"
+
+            "mode" "static"
+            "manifestType" "cronJob"
+            "manifestName" "hello"
 
           }}
 
