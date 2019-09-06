@@ -1,0 +1,40 @@
+{
+  "application": "training",
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "Terraform plan and ",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+        "stages": [
+          
+          {{ module "module.terraformer.stage"
+              "name" "Terraformer Plan"
+              "refId" 1
+              "requisiteStageRefIds" []
+
+              "action" "plan"
+              "artifacts" [
+                            {
+                              "reference": "https://github.com/armory-io/karlo-test",
+                              "type": "git/repo"
+                            },
+                            {
+                              "artifactAccount": "github-for-terraform",
+                              "reference": "https://api.github.com/repos/armory-io/karlo-test/contents/backend.tfvars",
+                              "type": "github/file"
+                            }
+                          ]
+              "dir" "/"
+
+              
+          }}
+    
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
