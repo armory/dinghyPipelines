@@ -13,7 +13,7 @@
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
-          {{ module "module.checkPreconditions.stage" 
+          {{ module "stage.checkPreconditions.module" 
             "name" "checkPreconditions"
             "refId" 1
             "requisiteStageRefIds" []
@@ -40,14 +40,14 @@
 
           }},
 
-          {{ module "module.wait.stage" 
+          {{ module "stage.wait.module" 
               "name" "waitStage"
               "refId" 2
               "requisiteStageRefIds" ["1"]
               "waitTime" "3"
 
           }},
-          {{ module "module.manualJudgment.stage" 
+          {{ module "stage.manualJudgment.module" 
               "name" "manualJudgment2"
               "refId" 3
               "requisiteStageRefIds" ["2"]

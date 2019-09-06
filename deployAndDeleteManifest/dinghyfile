@@ -9,7 +9,7 @@
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
-          {{ module "module.deployManifest.stage" 
+          {{ module "stage.deployManifest.module" 
             "name" "deploy manifest"
             "refId" 1
             "requisiteStageRefIds" [] 
@@ -58,7 +58,7 @@
             "expectedArtifacts" []
 
           }},
-          {{ module "module.deleteManifest.stage"
+          {{ module "stage.deleteManifest.module"
             "name" "Delete Manifest"
             "refId" "2"
             "requisiteStageRefIds" ["1"]
@@ -78,7 +78,7 @@
                       }
           }},
 
-          {{ module "module.deleteManifest.stage"
+          {{ module "stage.deleteManifest.module"
             "name" "Delete Manifest"
             "refId" "3"
             "requisiteStageRefIds" ["1"]
@@ -94,7 +94,7 @@
             "kind" "deployment"
           }},
 
-          {{ module "module.deleteManifest.stage"
+          {{ module "stage.deleteManifest.module"
             "name" "Delete Manifest"
             "refId" "4"
             "requisiteStageRefIds" ["1"]

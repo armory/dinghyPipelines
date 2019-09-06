@@ -10,7 +10,7 @@
         "limitConcurrent": true,
         "stages": [
           
-          {{ module "module.evaluateVariables.stage"
+          {{ module "stage.evaluateVariables.module"
               "name" "Evaluate Variable"
               "refId" 1
               "requisiteStageRefIds" []
@@ -24,7 +24,7 @@
               "failOnFailedExpressions" true
           }},
 
-          {{ module "module.manualJudgment.stage" 
+          {{ module "stage.manualJudgment.module" 
               "name" "Manual Judgment"
               "refId" 2
               "requisiteStageRefIds" ["1"]

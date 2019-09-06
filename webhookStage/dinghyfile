@@ -9,7 +9,7 @@
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
-          {{ module "module.webhook.stage" 
+          {{ module "stage.webhook.module" 
             "name" "webhook"
             "refId" 1
             "requisiteStageRefIds" [] 
@@ -42,7 +42,7 @@
             "terminalStatuses" "Error, Exception"
           }},
 
-          {{ module "module.webhook.stage" 
+          {{ module "stage.webhook.module" 
             "name" "webhook"
             "refId" 1
             "requisiteStageRefIds" [] 

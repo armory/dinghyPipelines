@@ -31,7 +31,7 @@
 
         "stages": [
 
-          {{ module "module.bakeManifest.stage" 
+          {{ module "stage.bakeManifest.module" 
               "name" "bake manifest"
               "refId" 1	
               "requisiteStageRefIds" []
@@ -71,7 +71,7 @@
               
 
           }},
-          {{ module "module.deployManifest.stage" 
+          {{ module "stage.deployManifest.module" 
             "name" "deploy manifest"
             "refId" 2
             "requisiteStageRefIds" ["1"] 

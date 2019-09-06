@@ -13,7 +13,7 @@
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
-          {{ module "module.wait.stage" 
+          {{ module "stage.wait.module" 
               "name" "waitStage"
               "refId" 1
               "requisiteStageRefIds" []
@@ -39,7 +39,7 @@
                                 }
                               ]
           }},
-          {{ module "module.manualJudgment.stage" 
+          {{ module "stage.manualJudgment.module" 
               "name" "manualJudgment2"
               "refId" 2
               "requisiteStageRefIds" ["1"]
@@ -60,7 +60,7 @@
                 ]
           }},
 
-          {{ module "module.jenkins.stage" 
+          {{ module "stage.jenkins.module" 
               "name" "jenkinsss"
               "refId" 3
               "requisiteStageRefIds" ["2"]
@@ -69,7 +69,7 @@
               "job" "karlo-networking"
                 
           }},
-          {{ module "module.pipelineTrigger.stage" 
+          {{ module "stage.pipelineTrigger.module" 
               "name" "pipeline trigger"
               "refId" 4
               "requisiteStageRefIds" ["3"]
@@ -78,7 +78,7 @@
               "triggerPipeline" "dinghy"
               "pipelineParameters" {"vaca": true}   
           }},
-          {{ module "module.bakeManifest.stage" 
+          {{ module "stage.bakeManifest.module" 
               "name" "bake manifest"
               "refId" 5
               "requisiteStageRefIds" ["4"]
@@ -124,7 +124,7 @@
               
 
           }},
-          {{ module "module.deployManifest.stage" 
+          {{ module "stage.deployManifest.module" 
             "name" "deploy manifest"
             "refId" 6
             "requisiteStageRefIds" ["5"] 

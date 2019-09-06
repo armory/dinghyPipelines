@@ -10,7 +10,7 @@
         "limitConcurrent": true,
         "stages": [
           
-          {{ module "module.terraformer.stage"
+          {{ module "stage.terraformer.module"
               "name" "Terraformer Plan"
               "refId" 1
               "requisiteStageRefIds" []
@@ -29,7 +29,7 @@
                           ]
               "dir" "/"
           }},
-          {{ module "module.manualJudgment.stage" 
+          {{ module "stage.manualJudgment.module" 
               "name" "Terraform Judgment"
               "refId" 2
               "requisiteStageRefIds" ["1"]
@@ -37,7 +37,7 @@
 
               "comments" "Init Out:\\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['init_stdout']}</pre>\\nInit Err:\\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['init_stderr']}</pre>\\nPlan Out:\\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['plan_stdout']}</pre>\\nPlan Err:\\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['plan_stderr']}</pre>"
           }},
-          {{ module "module.terraformer.stage"
+          {{ module "stage.terraformer.module"
               "name" "Terraformer Plan"
               "refId" 3
               "requisiteStageRefIds" ["2"]
