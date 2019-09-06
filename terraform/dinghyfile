@@ -5,7 +5,7 @@
       {
         "application": "training",
         "keepWaitingPipelines": false,
-        "name": "Terraform plan and ",
+        "name": "Terraform plan",
         "lastModifiedBy": "karlomendozaarmory",
         "limitConcurrent": true,
         "stages": [
@@ -28,8 +28,15 @@
                             }
                           ]
               "dir" "/"
+          }},
+          {{ module "module.manualJudgment.stage" 
+              "name" "Terraform Judgment"
+              "refId" 2
+              "requisiteStageRefIds" ["1"]
+              "instructions" "Please review comments section"
+              "comments" "Init Out:\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['init_stdout']}</pre>\nInit Err:\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['init_stderr']}</pre>\nPlan Out:\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['plan_stdout']}</pre>\nPlan Err:\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['plan_stderr']}</pre>"
 
-              
+
           }}
     
         ],
