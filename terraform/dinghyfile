@@ -34,9 +34,27 @@
               "refId" 2
               "requisiteStageRefIds" ["1"]
               "instructions" "Please review comments section"
+
               "comments" "Init Out:\\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['init_stdout']}</pre>\\nInit Err:\\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['init_stderr']}</pre>\\nPlan Out:\\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['plan_stdout']}</pre>\\nPlan Err:\\n<pre>${#stage('Terraformer Plan')['outputs']['status']['logs']['plan_stderr']}</pre>"
+          }},
+          {{ module "module.terraformer.stage"
+              "name" "Terraformer Plan"
+              "refId" 3
+              "requisiteStageRefIds" ["2"]
 
-
+              "action" "apply"
+              "artifacts" [
+                            {
+                              "reference": "https://github.com/armory-io/karlo-test",
+                              "type": "git/repo"
+                            },
+                            {
+                              "artifactAccount": "github-for-terraform",
+                              "reference": "https://api.github.com/repos/armory-io/karlo-test/contents/backend.tfvars",
+                              "type": "github/file"
+                            }
+                          ]
+              "dir" "/"
           }}
     
         ],
