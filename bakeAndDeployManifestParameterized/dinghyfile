@@ -15,7 +15,7 @@
         "limitConcurrent": true,
 
         "expectedArtifacts": [
-                  {{ module section.artifact.module
+                  {{ module "section.artifact.module"
                     "artifactId" {{var configArtifactHelmChartTarBall}}
                     "artifactName" "myHelmChart"
                     "displayName" "myHelmChart"
