@@ -27,60 +27,6 @@
 							  ],
 
         "stages": [
-
-          {{ module "stage.bakeManifest.module" 
-              "name" "bake manifest"
-              "refId" 1	
-              "requisiteStageRefIds" []
-
-              "templateRenderer" "HELM2"
-              "outputName" "bake-artifact-output"
-              "namespace" "karlo"
-
-              "inputArtifacts" [
-                    {{module "section.inputArtifact.module"
-                       "account" "s3artifact"
-                        "artifact" null
-                        "artifactId" {{var configArtifactHelmChartTarBall}}
-                    }}
-                  ]
-
-              "overrides" {
-                              "dasas": "adsa",
-                              "dasdas": "sdasd"
-                            }
-
-              "evaluateOverrideExpressions" false
-
-              "expectedArtifacts" [
-                        {{ module section.artifact.module
-                          "artifactId" {{var bakedArtifactToDeploy}}
-                          "artifactName" "bake-artifact-output"
-                          "displayName" "bake-artifact-output"
-                          "type" "embedded/base64"
-                          "useDefaultArtifact" false
-                          "usePriorExecution" false
-                        }}
-                      ]
-          }},
-          {{ module "stage.deployManifest.module" 
-            "name" "deploy manifest"
-            "refId" 2
-            "requisiteStageRefIds" ["1"] 
-
-            "account" "kubernetes"
-            "cloudProvider" "kubernetes"
-            "applicationName" "training"
-            "namespaceOverride" "karlo"
-            "source" "artifact"
-            "manifestArtifactId" {{var bakedArtifactToDeploy}}
-            "manifestArtifactAccount" "embedded-artifact"
-            
-            "requiredArtifacts" []
-            "skipExpressionEvaluation" false
-            "requiredArtifactIds" []
-            "expectedArtifacts" []
-          }}
         ],
         "triggers": [],
         "updateTs": "1567185128000"
