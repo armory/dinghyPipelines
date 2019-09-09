@@ -38,7 +38,7 @@
               "namespace" "karlo"
 
               "inputArtifacts" [
-                    {module "section.inputArtifact.module"
+                    { module "section.inputArtifact.module"
                        "account" "s3artifact"
                         "artifact" null
                         "artifactId" {{var configArtifactHelmChartTarBall}}
