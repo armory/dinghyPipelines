@@ -50,17 +50,24 @@
                               "dasdas": "sdasd"
                             }
 
-              "evaluateOverrideExpressions" false
-
-              "expectedArtifacts" [
-                        {{ module section.artifact.module
+              "evaluateOverrideExpressions" { module section.artifact.module
                           "artifactId" {{var bakedArtifactToDeploy}}
                           "artifactName" "bake-artifact-output"
                           "displayName" "bake-artifact-output"
                           "type" "embedded/base64"
                           "useDefaultArtifact" false
                           "usePriorExecution" false
-                        }}
+                        }
+
+              "expectedArtifacts" [
+                        { module section.artifact.module
+                          "artifactId" {{var bakedArtifactToDeploy}}
+                          "artifactName" "bake-artifact-output"
+                          "displayName" "bake-artifact-output"
+                          "type" "embedded/base64"
+                          "useDefaultArtifact" false
+                          "usePriorExecution" false
+                        }
                       ]
           }},
           {{ module "stage.deployManifest.module" 
