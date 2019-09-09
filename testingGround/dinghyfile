@@ -36,13 +36,18 @@
               "templateRenderer" "HELM2"
               "outputName" "bake-artifact-output"
               "namespace" "karlo"
+              "namespace" { module "section.inputArtifact.module"
+                              "account" "s3artifact"
+                              "artifact" null
+                              "artifactId" {{var configArtifactHelmChartTarBall}}
+                            }
 
               "inputArtifacts" [
-                    {{module "section.inputArtifact.module"
+                    {module "section.inputArtifact.module"
                        "account" "s3artifact"
                         "artifact" null
                         "artifactId" {{var configArtifactHelmChartTarBall}}
-                    }}
+                    }
                   ]
 
               "overrides" {
