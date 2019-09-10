@@ -50,24 +50,6 @@
               "evaluateOverrideExpressions" false
 
               "expectedArtifacts" []
-          }},
-          {{ module "stage.deployManifest.module" 
-            "name" "deploy manifest"
-            "refId" 2
-            "requisiteStageRefIds" ["1"] 
-
-            "account" "kubernetes"
-            "cloudProvider" "kubernetes"
-            "applicationName" "training"
-            "namespaceOverride" "karlo"
-            "source" "artifact"
-            "manifestArtifactId" {{var bakedArtifactToDeploy}}
-            "manifestArtifactAccount" "embedded-artifact"
-            
-            "requiredArtifacts" []
-            "skipExpressionEvaluation" false
-            "requiredArtifactIds" []
-            "expectedArtifacts" []
           }}
         ],
         "triggers": [],
