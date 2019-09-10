@@ -2,10 +2,7 @@
   "application": "training",
   "globals": {
       "configArtifactHelmChartTarBall": "helmChartId",
-      "bakedArtifactToDeploy": "helmBakedNginxId",
-      "one": "twothree",
-      "anotherTest": "testing grounds"
-
+      "bakedArtifactToDeploy": "helmBakedNginxId"
 
   },
 
@@ -31,14 +28,14 @@
 
         "stages": [
 
-          {{ module "stage.test.module" 
+          {{ module "stage.bakeManifest.module" 
               "name" "bake manifest"
               "refId" 1	
               "requisiteStageRefIds" []
 
               "templateRenderer" "HELM2"
               "outputName" "bake-artifact-output"
-              "namespace" {{var anotherTest}}
+              "namespace" "karlo"
 
               "inputArtifacts" []
 
@@ -49,7 +46,34 @@
 
               "evaluateOverrideExpressions" false
 
-              "expectedArtifacts" []
+              "expectedArtifacts" [
+                        {{ module section.artifact.module
+                          "artifactId" {{var bakedArtifactToDeploy}}
+                          "artifactName" "bake-artifact-output"
+                          "displayName" "bake-artifact-output"
+                          "type" "embedded/base64"
+                          "useDefaultArtifact" false
+                          "usePriorExecution" false
+                        }}
+                      ]
+          }},
+          {{ module "stage.deployManifest.module" 
+            "name" "deploy manifest"
+            "refId" 2
+            "requisiteStageRefIds" ["1"] 
+
+            "account" "kubernetes"
+            "cloudProvider" "kubernetes"
+            "applicationName" "training"
+            "namespaceOverride" "karlo"
+            "source" "artifact"
+            "manifestArtifactId" {{var bakedArtifactToDeploy}}
+            "manifestArtifactAccount" "embedded-artifact"
+            
+            "requiredArtifacts" []
+            "skipExpressionEvaluation" false
+            "requiredArtifactIds" []
+            "expectedArtifacts" []
           }}
         ],
         "triggers": [],
@@ -57,4 +81,5 @@
       }
    ]
 }
+
 
