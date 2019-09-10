@@ -28,7 +28,7 @@
 
         "stages": [
 
-          {{ module "stage.bakeManifest.module" 
+          {{ module "stage.test.module" 
               "name" "bake manifest"
               "refId" 1	
               "requisiteStageRefIds" []
@@ -46,34 +46,7 @@
 
               "evaluateOverrideExpressions" false
 
-              "expectedArtifacts" [
-                        {{ module section.artifact.module
-                          "artifactId" {{var bakedArtifactToDeploy}}
-                          "artifactName" "bake-artifact-output"
-                          "displayName" "bake-artifact-output"
-                          "type" "embedded/base64"
-                          "useDefaultArtifact" false
-                          "usePriorExecution" false
-                        }}
-                      ]
-          }},
-          {{ module "stage.deployManifest.module" 
-            "name" "deploy manifest"
-            "refId" 2
-            "requisiteStageRefIds" ["1"] 
-
-            "account" "kubernetes"
-            "cloudProvider" "kubernetes"
-            "applicationName" "training"
-            "namespaceOverride" "karlo"
-            "source" "artifact"
-            "manifestArtifactId" {{var bakedArtifactToDeploy}}
-            "manifestArtifactAccount" "embedded-artifact"
-            
-            "requiredArtifacts" []
-            "skipExpressionEvaluation" false
-            "requiredArtifactIds" []
-            "expectedArtifacts" []
+              "expectedArtifacts" []
           }}
         ],
         "triggers": [],
