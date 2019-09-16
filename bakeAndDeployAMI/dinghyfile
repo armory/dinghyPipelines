@@ -14,7 +14,7 @@
         "stages": [
 
           {{ module "stage.bakeAMI.module" 
-              "name" "bake manifest"
+              "name" "Bake"
               "refId" 1	
               "requisiteStageRefIds" []
 
@@ -27,8 +27,8 @@
               
 
           }},
-          {{ module "stage.deployManifest.module" 
-            "name" "deploy manifest"
+          {{ module "stage.deployAMI.module" 
+            "name" "Deploy"
             "refId" 2
             "requisiteStageRefIds" ["1"] 
 
