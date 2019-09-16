@@ -1,0 +1,92 @@
+{
+  "application": "training",
+
+  "pipelines": [
+      {
+        "application": "training",
+        "keepWaitingPipelines": false,
+        "name": "bakeAndDeployAMI",
+        "lastModifiedBy": "karlomendozaarmory",
+        "limitConcurrent": true,
+
+        "expectedArtifacts": [],
+
+        "stages": [
+
+          {{ module "stage.bakeAMI.module" 
+              "name" "bake manifest"
+              "refId" 1	
+              "requisiteStageRefIds" []
+
+              "regions"  [ "us-west-2" ]
+              "package" "nginx"
+              "baseOs" "trusty"
+              "vmType" "hvm"
+              "rebake" false
+
+              
+
+          }},
+          {{ module "stage.deployManifest.module" 
+            "name" "deploy manifest"
+            "refId" 2
+            "requisiteStageRefIds" ["1"] 
+
+           "clusters" [
+                        {
+                          "account": "armory-ps-dev",
+                          "application": "test",
+                          "availabilityZones": {
+                            "us-west-2": [
+                              "us-west-2a",
+                              "us-west-2b",
+                              "us-west-2c",
+                              "us-west-2d"
+                            ]
+                          },
+                          "capacity": {
+                            "desired": 1,
+                            "max": 1,
+                            "min": 1
+                          },
+                          "cloudProvider": "aws",
+                          "cooldown": 10,
+                          "copySourceCustomBlockDeviceMappings": false,
+                          "ebsOptimized": false,
+                          "enabledMetrics": [
+                            "GroupMinSize"
+                          ],
+                          "freeFormDetails": "",
+                          "healthCheckGracePeriod": 600,
+                          "healthCheckType": "EC2",
+                          "iamRole": "BaseIAMRole",
+                          "instanceMonitoring": false,
+                          "instanceType": "a1.medium",
+                          "keyPair": "karlo-tests",
+                          "loadBalancers": [],
+                          "provider": "aws",
+                          "securityGroups": [],
+                          "spotPrice": "",
+                          "stack": "",
+                          "strategy": "",
+                          "subnetType": "training-private",
+                          "suspendedProcesses": [],
+                          "tags": {},
+                          "targetGroups": [],
+                          "targetHealthyDeployPercentage": 100,
+                          "terminationPolicies": [
+                            "Default"
+                          ],
+                          "useAmiBlockDeviceMappings": false
+                        }
+                      ]
+
+          }}
+
+        ],
+        "triggers": [],
+        "updateTs": "1567185128000"
+      }
+   ]
+}
+
