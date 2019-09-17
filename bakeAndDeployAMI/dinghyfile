@@ -23,9 +23,6 @@
               "baseOs" "trusty"
               "vmType" "hvm"
               "rebake" false
-
-              
-
           }},
           {{ module "stage.deployAMI.module" 
             "name" "Deploy"
