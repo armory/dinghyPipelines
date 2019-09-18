@@ -10,6 +10,7 @@
 
     {{ module "pipeline.test.module" 
       "application" "training"
+      
     }}
 
   ]
