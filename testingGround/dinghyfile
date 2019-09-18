@@ -8,7 +8,9 @@
   "pipelines": [
 
 
-    {{ module "pipeline.test.module" }}
+    {{ module "pipeline.test.module" 
+      "application" "training"
+    }}
 
   ]
 }
