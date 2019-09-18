@@ -1,58 +1,14 @@
 {
   "application": "training",
+  "deleteStalePipelines": false,
   "globals": {
-      "configArtifactHelmChartTarBall": "helmChartId",
-      "bakedArtifactToDeploy": "helmBakedNginxId"
-
+    "application": "training",
   },
 
   "pipelines": [
-      {
-        "application": "training",
-        "keepWaitingPipelines": false,
-        "name": "bakeAndDeployParameterizedArtifacts",
-        "lastModifiedBy": "karlomendozaarmory",
-        "limitConcurrent": true,
 
-        "expectedArtifacts": [
-                  {{ module "section.artifact.module"
-                    "artifactId" {{var configArtifactHelmChartTarBall}}
-                    "artifactName" "myHelmChart"
-                    "displayName" "myHelmChart"
-                    "artifactReference" "s3://helm-charts-psdev/mychart-0.1.0.tgz"
-                    "type" "s3/object"
-                    "useDefaultArtifact" false
-                    "usePriorExecution" false
-                  }}
-							  ],
 
-        "stages": [
+    {{ module "pipeline.test.module" }}
 
-          {{ module "stage.test.module" 
-              "name" "bake manifest"
-              "refId" 1	
-              "requisiteStageRefIds" []
-
-              "templateRenderer" "HELM2"
-              "outputName" "bake-artifact-output"
-              "namespace" "karlo"
-
-              "inputArtifacts" []
-
-              "overrides" {
-                              "dasas": "adsa",
-                              "dasdas": "sdasd"
-                            }
-
-              "evaluateOverrideExpressions" false
-
-              "expectedArtifacts" []
-          }}
-        ],
-        "triggers": [],
-        "updateTs": "1567185128000"
-      }
-   ]
+  ]
 }
-
-
