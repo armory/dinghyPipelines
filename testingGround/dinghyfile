@@ -2,7 +2,7 @@
   "application": "training",
   "deleteStalePipelines": false,
   "globals": {
-    "application": "training",
+    "application": "training"
   },
 
   "pipelines": [
