@@ -1,0 +1,108 @@
+application: patreonpy
+pipelines:
+- application: patreonpy
+  name: "Deploy to Production"
+  keepWaitingPipelines: false
+  lastModifiedBy: ian@patreon.com
+  limitConcurrent: true
+  notifications:
+  - address: spinnaker-alerts
+    level: pipeline
+    type: slack
+    when:
+    - pipeline.starting
+    - pipeline.complete
+    - pipeline.failed
+  parameterConfig:
+  - default: master
+    description: Ansible branch to provision from
+    label: Branch to provision from
+    name: provision_branch
+  stages:
+  {{ module "deployToProduction/find.image.from.tag.module" }}
+  {{ module "deployToProduction/deploy.web.module" }}
+  {{ module "deployToProduction/deploy.api.module" }}
+  triggers:
+  - application: patreonpy
+    enabled: true
+    pipeline: 29e796c8-2d70-4936-8d0b-f15a28f96b3c
+    status:
+    - successful
+    type: pipeline
+  updateTs: '1565381369000'
+- application: patreonpy
+  name: "Force Deploy"
+  keepWaitingPipelines: false
+  lastModifiedBy: lastModifiedBy
+  limitConcurrent: true
+  notifications:
+  - address: spinnaker-alerts
+    level: pipeline
+    type: slack
+    when:
+    - pipeline.starting
+    - pipeline.complete
+    - pipeline.failed
+  parameterConfig:
+  - default: master
+    description: Ansible branch to provision from
+    label: Branch to provision from
+    name: provision_branch
+  - hasOptions: false
+    label: Sha to force deploy
+    name: python_sha
+    options:
+    - value: ''
+    required: true
+  stages:
+  {{ module "forceDeploy/find.image.from.tag.module" }}
+  {{ module "forceDeploy/deploy.web.module" }}
+  {{ module "forceDeploy/deploy.api.module" }}
+  {{ module "forceDeploy/check.preconditions.module" }}
+  triggers:
+  - enabled: true
+    payloadConstraints:
+      parameters: ".*"
+    source: patreonpy-force-deploy
+    type: webhook
+  updateTs: '1565302999000'
+- application: patreonpy
+  name: "Staging and Smoke Test"
+  keepWaitingPipelines: false
+  lastModifiedBy: lastModifiedBy
+  limitConcurrent: true
+  notifications:
+  - address: spinnaker-alerts
+    level: pipeline
+    type: slack
+    when:
+    - pipeline.starting
+    - pipeline.complete
+    - pipeline.failed
+  parameterConfig:
+  - label: Sha Shiv
+    name: venv_sha
+    required: true
+  - label: Sha Tarball of GitHub Repo
+    name: python_sha
+    required: true
+  - default: master
+    description: Branch to provision
+    label: Ansible branch  to provision
+    name: provision_branch
+  stages:
+  {{ module "stagingAndSmokeTest/bake.ami.module" }}
+  {{ module "stagingAndSmokeTest/deploy.staging.web.module" }}
+  {{ module "stagingAndSmokeTest/check.preconditions.module" }}
+  {{ module "stagingAndSmokeTest/deploy.staging.api.module" }}
+  {{ module "stagingAndSmokeTest/webhook.trigger.circlecijob.module" }}
+  {{ module "stagingAndSmokeTest/webhook.status.circlecijob.module" }}
+  {{ module "stagingAndSmokeTest/tag.image.module" }}
+  {{ module "stagingAndSmokeTest/find.base.image.from.tag.module" }}
+  triggers:
+  - enabled: true
+    payloadConstraints:
+      parameters: ".*"
+    source: patreonpy
+    type: webhook
+  updateTs: '1565109440000'
