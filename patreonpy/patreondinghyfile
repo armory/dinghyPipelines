@@ -3,7 +3,7 @@ pipelines:
 - application: patreonpy
   name: "Deploy to Production"
   keepWaitingPipelines: false
-  lastModifiedBy: ian@patreon.com
+  lastModifiedBy: ian@patreon.com.test
   limitConcurrent: true
   notifications:
   - address: spinnaker-alerts
