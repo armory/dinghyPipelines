@@ -67,7 +67,7 @@
             "account" "kubernetes"
             "app" "training"
             "cloudProvider" "kubernetes"
-            "location" "karlo"
+            "namespace" "karlo"
 
             "mode" "static"
             "manifestType" "cronJob"
@@ -82,7 +82,7 @@
             "account" "kubernetes"
             "app" "training"
             "cloudProvider" "kubernetes"
-            "location" "karlo"
+            "namespace" "karlo"
 
             "mode" "static"
             "manifestType" "cronJob"
@@ -98,7 +98,7 @@
             "account" "kubernetes"
             "app" "training"
             "cloudProvider" "kubernetes"
-            "location" "karlo"
+            "namespace" "karlo"
 
             "mode" "static"
             "manifestType" "cronjob"
