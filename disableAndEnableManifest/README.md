@@ -13,10 +13,10 @@ For the "stage.deployManifest.module" stage
 For the "stage.disableManifest.module" and  "stage.enableManifest.module"
 "account" set the account name defined for your cluster
 "app" applicationName
-"location" the namespace
+"namespace" the namespace
 
 
 For the "stage.deleteManifest.module"
 "account" set the account name defined for your cluster
-"location" is the namespace where the deployment happened
+"namespace" is the namespace where the deployment happened
 "mode" available options are: static, dynamic and label, each one as a separete set of options, this example uses the 3 different ones.
