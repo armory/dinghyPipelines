@@ -4,7 +4,6 @@
       "bakedArtifactId": "helmBakedNginX"
 
   },
-
   "pipelines": [
       {
         "application": "training",
